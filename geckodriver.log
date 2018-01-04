@@ -14965,3 +14965,14 @@ See /usr/include/servers/bootstrap_defs.h for the error codes.
 1515043715954	Marionette	DEBUG	Received DOM event "DOMContentLoaded" for "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
 1515043715999	Marionette	DEBUG	Received observer notification "outer-window-destroyed" for "2147483655"
 1515043717454	Marionette	DEBUG	Received DOM event "pageshow" for "https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars"
+1515044218862	addons.manager	INFO	Skipping background update check
+1515044460335	DeferredSave.extensions.json	DEBUG	Save changes
+1515044460382	DeferredSave.extensions.json	DEBUG	Starting timer
+1515044470410	DeferredSave.extensions.json	DEBUG	Starting write
+1515044470474	DeferredSave.extensions.json	DEBUG	Write succeeded
+1515044547717	addons.productaddons	INFO	sending request to: https://aus5.mozilla.org/update/3/GMP/57.0.3/20171226083017/Darwin_x86_64-gcc3/en-US/release/Darwin%2015.6.0/default/default/update.xml
+1515044548089	addons.productaddons	INFO	Completed downloading document
+1515044548430	addons.productaddons	INFO	downloadXHR File download. status=200
+1515044548436	addons.productaddons	INFO	Downloaded file will be saved to /var/folders/kw/mtbfdbw95x9_6n43g02b57gc0000gn/T/tmpaddon-72d15a
+1515044549563	addons.productaddons	INFO	downloadXHR File download. status=200
+1515044549566	addons.productaddons	INFO	Downloaded file will be saved to /var/folders/kw/mtbfdbw95x9_6n43g02b57gc0000gn/T/tmpaddon-23d5e7
