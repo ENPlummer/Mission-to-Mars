@@ -1,6 +1,5 @@
 
 #Dependencies
-
 from bs4 import BeautifulSoup
 import requests
 from splinter import Browser
@@ -34,7 +33,7 @@ def scrape():
     title = soup.find('div',class_='content_title').text
 
     #Append Mars news headline to the dictionary.
-    mission_to_mars['Latest Mars News'] = title
+    mission_to_mars['Headline'] = title
     #news_title = str(results_title)
     #print(news_title)
 
@@ -46,110 +45,81 @@ def scrape():
     #print(news_p)
 
 
-# Use Splinter to scrape the NASA JPL page.
+    # Use Splinter to scrape the NASA JPL page.
 
-#browser = Browser('firefox')
-    url_nasa_jpl = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
-    browser.visit(url_nasa_jpl)
+    browser = Browser('firefox')
+    url_img = 'https://www.jpl.nasa.gov/spaceimages/?search=&category=Mars'
+    browser.visit(url_img)
     html = browser.html
-    jpl_soup = BeautifulSoup(html,'html.parser')
-    image_jpl = jpl_soup.body.find('img', class_='fancybox-image')
-#image
+    soup_div = BeautifulSoup(html,'html.parser')
+    featured_image = soup_div.find('img', class_='thumb')
 
 
-# In[10]:
 
-    featured_image= 'https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA19952_ip.jpg'
+
+    #featured_image= 'https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA19952_ip.jpg'
 
     #Append the featured image to the mission to Mars Dictionary.
-
-    mission_to_mars['Featured Image'] = featured_image
-
-# In[11]:
-
-#Scrape the NASA Twitter feed.
-
-    """twitter_url = 'https://twitter.com/marswxreport?lang=en'
-    response = requests.get(twitter_url)
-    tweet_soup = BeautifulSoup(response.text,'html.parser')
-    mars_tweet = tweet_soup.body.find('p')
-    #Append the latest Mars Tweet.
-    mission_to_mars['Latest Mars Tweet'] = mars_tweet"""
+    mission_to_mars['Featured_Image'] = featured_image
 
 
-# In[12]:
+    #Scrape the Mars weather Twitter feed.
+    tweet_url = 'https://twitter.com/marswxreport?lang=en'
+    response = requests.get(tweet_url)
+    soup_tweet = BeautifulSoup(response.text,'html.parser')
+    recent_tweet = soup_tweet('p',class_='TweetTextSize')[0]
+    
+    #Append the tweet to the mission_to_mars dictionary.
+    mission_to_mars['Weather_tweet'] = recent_tweet
 
-#mars_weather = str(results)
-#print(mars_weather)
 
 
-# In[13]:
 
-#Use Pandas to scrape the Mars facts website.
+
+    #Use Pandas to scrape the Mars facts website.
 
     url_table = 'https://space-facts.com/mars/'
     mars_table = pd.read_html(url_table)
-#mars_table
+    #mars_table
 
 
-# In[14]:
+
 
     mars_table_df = mars_table[0]
     mars_table_df.columns = ['Fact','Data']
-#mars_table_df
+    #mars_table_df
 
 
-# In[15]:
     #Convert the Mars Table to HTML.
     mars_table_html = mars_table_df.to_html(header=True, index=False)
     #Append the table to the mission to Mars dictionary.
-    mission_to_mars['Mars Facts'] = mars_table_html
+    mars_table_dict = []
+    mars_table_dict.append(mars_table_html)
+    mission_to_mars['Mars Facts'] = mars_table_dict
 
 
-# In[16]:
+    #url_mh = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
+    #browser.visit(url_mh)
+    #html = browser.html
+    #mars_soup = BeautifulSoup(html,'html.parser')
+    #hemisphere = mars_soup.find('div',class_='collapsible results')
 
-    """url_mh = 'https://astrogeology.usgs.gov/search/results?q=hemisphere+enhanced&k1=target&v1=Mars'
-    browser.visit(url_mh)
-    html = browser.html
-    mars_soup = BeautifulSoup(html,'html.parser')
-    hemisphere = mars_soup.find('div',class_='collapsible results')
-
-    results = hemisphere.find('a')
-#print(results)
+    #results = hemisphere.find('a')
 
 
-# In[17]:
+    #hemisphere_list = []
 
-    hemisphere_list = []
-
-    for result in results:
-        title = result.h3
-        link = 'https://astrogeology.usgs.gov' + result['href']
-        print(title,link)    
-        browser.visit(link)
-        time.sleep(5)
-        image_html = browser.html
-        soup = BeautifulSoup(image_html,'html.parser')
-        soup_image = soup.find('div', class_='downloads').find('li').a['href']
-        print(soup_image)
-        mars_images = {'title':title, 'img_url':soup_image}
-        mars_hemispheres= hemisphere_list.append(mars_images)
+    #for result in results:
+        #title = result.h3
+        #link = 'https://astrogeology.usgs.gov' + result['href']
+        #print(title,link)    
+        #browser.visit(link)
+        #time.sleep(5)
+        #image_html = browser.html
+        #soup = BeautifulSoup(image_html,'html.parser')
+        #soup_image = soup.find('div', class_='downloads').find('li').a['href']
+        #print(soup_image)
+        #mars_images = {'title':title, 'img_url':soup_image}
+        #mars_hemispheres= hemisphere_list.append(mars_images)
         #Append to mission the mission to Mars dictionary.
-        mission_to_mars['Mars Hemispheres'] = mars_hemispheres"""
-
-        #Return mission to Mars Dictionary.
-    return mission_to_mars
-
-#print(hemisphere_list)
-
-#Helper function to build the mission to Mars website.
-def missionMars(mission_to_mars):
-    website = ""
-    for p in website:
-        website += " " + p.get_text()
-        print(website)
-    return website    
-
-
-
-
+        #mission_to_mars['Mars Hemispheres'] = mars_hemispheres
