@@ -23,14 +23,27 @@
 	  </div>
 	  <div class="container">
 	  	<div class="row">
-	  		<div class="col-md-1"></div>
 	  		<div class="col-md-8">
-	  		  <h2>{{mission_to_mars.Headline}}</h2>
-	  		  <p>{{mission_to_mars.Article}}</p>
+	  		  <h2>{{mission_to_mars.headline}}</h2>
+	  		  <p>{{mission_to_mars.article}}</p>
 	  		  <h2>Featured Mars Image</h2>
-	  		  <img src="https://www.jpl.nasa.gov/spaceimages/images/mediumsize/PIA19952_ip.jpg">
+	  		  <img src={{mission_to_mars.featured_image}} width="400" height="400">
 	  		</div>
-	  		<div class="col-md-1"></div>
+	  		<div class="col-md-2"></div>
+	  		  <h2>Mars Weather</h2>
+	  		  <p>{{mission_to_mars.weather_tweet}}</p>
+	  		  <div class= "panel panel default">
+	  		  	<div class="panel-body">
+	  		  	  <h4>Mars Facts Table</h4>
+	  		  	  <hr>
+	  		  	  {{mission_to_mars.mars_facts_table | safe}} 	
+	  		  	</div>
+	  		  </div>
+	  	 <div class="row">
+	  	 	<div class="col-md-12">
+	  	 	  	<a href={{mission_to_mars.mars_hemispheres}}>	
+	  	 	</div>
+	  	 </div>	  	
 	  	</div>
 	  </div>  
 	</body>
