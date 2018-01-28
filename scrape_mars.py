@@ -117,9 +117,22 @@ def scrape():
             soup_image = soup_scrape.find('div', class_='downloads').find('li').a['href']
             print(soup_image)
             mars_images = {'title':title, 'img_url':soup_image}
-            mars_hemispheres= hemisphere_list.append(mars_images)
-            #Append to mission the mission to Mars dictionary.
-            mission_to_mars['mars_hemispheres'] = mars_hemispheres
+            hemisphere_list.append(mars_images)
+           #Grab each image link for each hemisphere.
+            print(hemisphere_list)
+            #Grab each image link and append them all to the mission_to_mars dictionary.
+            #Cerberus
+            cerberus = hemisphere_list[0]['img_url']
+            mission_to_mars['cerberus'] = cerberus_hemisphere
+            #Shciaparelli
+            schiaparelli = hemisphere_list[1]['img_url']
+            mission_to_mars['schiaparelli'] = schiaparelli_hemisphere
+            #Syrtis Major
+            syrtis_major = hemisphere_list[2]['img_url']
+            mission_to_mars['syrtis_major'] = syrtis_major_hemisphere
+            #Valles Marineris
+            valles_marineris = hemisphere_list[3]['img_url']
+            mission_to_mars['valles_marineris'] = valles_marineris_hemisphere
 
 
     return mission_to_mars    
